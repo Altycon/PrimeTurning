@@ -1,0 +1,149 @@
+/*  === SITE VARIABLES ===  */
+
+:root{
+    --ff-primary: Helvetica, sans-serif;
+    --fc-primary: hsl(0 0% 80%);
+    --bc-primary: hsl(0 0% 20%);
+    --bc-accent1: hsl(0 0% 30%);
+    --fs-primary: 1.2rem;
+    --lh-primary: 1.5rem;
+}
+
+
+/*  === RESETS ===  */
+
+*{margin: 0;padding: 0;box-sizing: border-box;}
+/* *{outline: 1px solid white;} */
+
+html{
+    font-family: var(--ff-primary);
+    color: var(--fc-primary);
+}
+body{
+    min-height: 100dvh;
+    min-height: 100vh;
+    background-color: var(--bc-primary);
+    isolation: isolate;
+}
+
+
+/*  === UTILITY CLASSES ===  */
+
+.link{
+    text-decoration: none;
+    color: var(--fc-primary);
+}
+.btn{
+    cursor: pointer;
+}
+
+
+/*  === TOPOLOGY ===  */
+
+.canvas{
+    --size: 400;
+    position: absolute;
+    top: 0; left: 0;
+    width: calc(var(--size) * 1dvw);
+    width: calc(var(--size) * 1vw);
+    height: calc(var(--size) * 1dvh);
+    height: calc(var(--size) * 1vh);
+    background-color: black;
+    z-index: -1;
+}
+
+
+.controls{
+    padding: 1rem;
+    position: fixed;
+    top: 0; left: 0;
+    width: max-content;
+    border-bottom-right-radius: 10px;
+    background-color: hsl(0 0% 50% / 0.1);
+}
+
+.control-properties{
+    margin-bottom: 1rem;
+}
+.control-properties *{
+    margin-bottom: .5rem;
+}
+.property-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.property-wrapper > input[type=number]{
+    width: 80px;
+}
+.property-wrapper > input[type=color]{
+    border: none;
+    width: 25px;
+    height: 20px;
+}
+.control-buttons{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.control-buttons button{
+    padding: 2px 2px;
+}
+.calculate-btn{
+    grid-column: 1/2;
+    grid-row: 1;
+}
+.render-btn{
+    grid-column: 3/4;
+    grid-row: 1;
+}
+.animation-control-buttons{
+    grid-column: 1/4;
+    grid-row: 2;
+    margin-top: 1rem;
+
+    display: flex;
+    justify-content: space-around;
+}
+.process-notification-display{
+    padding: 1rem 1rem 1rem 1rem;
+    position: fixed;
+    top: 0; right: 0;
+    width: 25vw;
+    height: 50px;
+    background-color: hsl(0 0% 50% / 0.1);
+    border-top-left-radius: 10px;
+    overflow: scroll;
+}
+
+.process-notification-display > p{
+    color: hsl(60 100% 50% / 0.8)
+}
+
+
+@media only screen and (max-width: 800px){
+    .process-notification-display{  
+        width: 40vw;
+    }
+}
+@media only screen and (max-width: 500px){
+    .process-notification-display{  
+        width: 40vw;
+    }
+}
+@media only screen and (max-width: 440px){
+    .process-notification-display{  
+        width: 40vw;
+        font-size: .8rem;
+    }
+}
+@media only screen and (max-width: 382px){
+    .process-notification-display{  
+        top: auto; bottom: 0; right: auto; left: 0;
+    }
+}
+@media only screen and (max-width: 300px){
+    .process-notification-display{  
+        width: 100vw;
+    }
+}

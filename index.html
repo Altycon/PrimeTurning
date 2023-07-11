@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Idea</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="module" src="js/index.js"></script>
+</head>
+<body>
+    <canvas class="canvas"></canvas>
+    <main>
+        <form class="controls">
+            <div class="control-properties">
+                <div class="property-wrapper">
+                    <label for="ResolutionInput">Resolution:</label>
+                    <input type="number" name="resolution" value="1" id="ResolutionInput" autocomplete="off">
+                </div>
+                <div class="property-wrapper">
+                    <label for="PointSizeInput">Size:</label>
+                    <input type="number" name="size" value="1" id="PointSizeInput"  autocomplete="off">
+                </div>
+                <div class="property-wrapper">
+                    <label for="MaxNumberInput">Max #</label>
+                    <input type="number" name="maxNumber" value="10000" id="MaxNumberInput"  autocomplete="off">
+                </div>
+                <div class="property-wrapper">
+                    <label for="CompositeColorInput">Composite Color</label>
+                    <input type="color" name="compositeColor" value="#cccccc" id="CompositeColorInput"  autocomplete="off">
+                </div>
+                <div class="property-wrapper">
+                    <label for="PrimeColorInput">Prime Color</label>
+                    <input type="color" name="primeColor" value="#ff0000" id="PrimeColorInput"  autocomplete="off">
+                </div>
+            </div>
+            <div class="control-buttons">
+                <button type="button" class="calculate-btn js-calculate-btn">Calculate</button>
+                <button type="button" class="render-btn js-render-btn">Render</button>
+                <div class="animation-control-buttons">
+                    <button type="button" class="stop-animate-btn js-stop-animate-btn">Stop</button>
+                    <button type="button" class="animate-btn js-animate-btn">Animate</button>
+                    <button type="button" class="pause-animate-btn js-pause-animate-btn">Pause</button>
+                </div>
+            </div>
+        </form>
+        <section class="process-notification-display js-process-notification-display">
+        
+        </section>
+    </main>
+</body>
+</html>
