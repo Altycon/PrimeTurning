@@ -41,7 +41,7 @@ body{
 /*  === TOPOLOGY ===  */
 
 .canvas{
-    --size: 400;
+    --size: 100;
     position: absolute;
     top: 0; left: 0;
     width: calc(var(--size) * 1dvw);
@@ -61,7 +61,18 @@ body{
     border-bottom-right-radius: 10px;
     background-color: hsl(0 0% 50% / 0.1);
 }
-
+.controls::after{
+    content: attr(data-count);
+    position: absolute;
+    top: 100%; right: 0;
+    width: 25px;
+    height: 25px;
+    background-color: inherit;
+    color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
 .control-properties{
     margin-bottom: 1rem;
 }
@@ -101,15 +112,14 @@ body{
     grid-column: 1/4;
     grid-row: 2;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 
     display: flex;
     justify-content: space-around;
 }
 .process-notification-display{
     padding: 1rem 1rem 1rem 1rem;
-    position: fixed;
-    top: 0; right: 0;
-    width: 25vw;
+    
     height: 50px;
     background-color: hsl(0 0% 50% / 0.1);
     border-top-left-radius: 10px;
@@ -122,28 +132,5 @@ body{
 
 
 @media only screen and (max-width: 800px){
-    .process-notification-display{  
-        width: 40vw;
-    }
-}
-@media only screen and (max-width: 500px){
-    .process-notification-display{  
-        width: 40vw;
-    }
-}
-@media only screen and (max-width: 440px){
-    .process-notification-display{  
-        width: 40vw;
-        font-size: .8rem;
-    }
-}
-@media only screen and (max-width: 382px){
-    .process-notification-display{  
-        top: auto; bottom: 0; right: auto; left: 0;
-    }
-}
-@media only screen and (max-width: 300px){
-    .process-notification-display{  
-        width: 100vw;
-    }
+    
 }

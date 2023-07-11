@@ -1,4 +1,6 @@
-
+function setNumberCountDisplay(n){
+    document.querySelector('.controls').dataset.count = `${n}`;
+}
 function getControlData(){
     const form = new FormData(document.querySelector('.controls'));
     const hexCompositeColorAlpha = '4d';
@@ -13,5 +15,6 @@ function getControlData(){
 };
 
 export {
+    setNumberCountDisplay,
     getControlData
 }

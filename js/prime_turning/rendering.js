@@ -25,7 +25,6 @@ function renderNumberPositions(ctx,positions,type = 'pixel'){
     const len = positions.length;
     switch(type){
         case 'pixel':
-            
             for(let i = 0; i < len; i++){
                 renderPixel(ctx, positions[i]);
             }
@@ -36,6 +35,13 @@ function renderNumberPositions(ctx,positions,type = 'pixel'){
             }
         break;
     }
+    renderPoint(ctx, 
+        { 
+            x: positions[0].x, 
+            y: positions[0].y, 
+            c: 'hsl(180 100% 50%)',
+            s: 2
+        });
     addProcessNotification('Rendered.')
 };
 
