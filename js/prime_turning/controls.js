@@ -3,6 +3,7 @@ import { addProcessNotification } from "../notifications/process_notification.js
 import { calculateNumberPositions } from "./calculate_positions.js";
 import { renderPixel, renderNumberPositions, renderPoint } from "./rendering.js";
 import { setNumberCountDisplay } from "./control_data.js";
+import { DPI } from "../utilities.js";
 
 const CONTROLS = {
     CALCULATE_BTN: document.querySelector('.js-calculate-btn'),
@@ -16,8 +17,8 @@ const CONTROLS = {
 function calculatePositions(ev){
     ev.preventDefault();
 
-    const startX = APP_STATE.CANVAS_WIDTH*0.75;
-    const startY = APP_STATE.CANVAS_HEIGHT*0.75;
+    const startX = APP_STATE.CANVAS_WIDTH;
+    const startY = APP_STATE.CANVAS_HEIGHT;
     APP_STATE.NUMBER_POSITIONS = calculateNumberPositions(
         startX, 
         startY
@@ -53,7 +54,7 @@ function animatePositions(){
         x: APP_STATE.NUMBER_POSITIONS[0].x,
         y: APP_STATE.NUMBER_POSITIONS[0].y,
         c: 'hsl(180 100% 50%)',
-        s: 3
+        s: 3 * (DPI > 1 ? DPI*0.5:DPI)
     };
     APP_STATE.CTX.clearRect(0,0,APP_STATE.CANVAS_WIDTH,APP_STATE.CANVAS_HEIGHT);
     let i = 0;
@@ -61,6 +62,7 @@ function animatePositions(){
         if(i >= APP_STATE.NUMBER_POSITIONS.length){
             cancelAnimationFrame(APP_STATE.ANIMATION_INTERVAL);
             addProcessNotification('Animation Finished');
+            APP_STATE.ANIMATION_INTERVAL = null;
             return;
         }
         const position = APP_STATE.NUMBER_POSITIONS[i];

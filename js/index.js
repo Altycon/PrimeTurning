@@ -1,12 +1,12 @@
 import { APP_STATE } from "./state.js";
-import { DPI, fixCanvas } from "./utilities.js";
+import { DPI, fixCanvas, isPrime } from "./utilities.js";
 import { addProcessNotification } from "./notifications/process_notification.js";
 import { addControlButtonListeners } from "./prime_turning/controls.js";
 
 
 
 function initializeApp(){
-    
+    console.log('isPrime', isPrime(4))
     addProcessNotification('Application started.');
     
     APP_STATE.CANVAS = fixCanvas(document.querySelector('.canvas'),DPI);

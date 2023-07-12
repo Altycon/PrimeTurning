@@ -18,13 +18,14 @@ function fixCanvas(canvas,dpi){
     canvas.setAttribute('height', style_height * dpi);
     return canvas;
 };
-function isPrime(num){
-    if(num < 2) return false;
-    const sqrtnum = Math.sqrt(num);
-    for(var i = 2; i < sqrtnum; i++){
-        if(num % i === 0) return false;
-    }   
-    return num > 1;
+function isPrime(value){
+    if(value <= 1 || value === 4)return false;
+    for(let i = 2; i < Math.sqrt(value); i++){
+        if(value % i === 0){
+            return false;
+        }
+    }
+    return true;
 };
 
 export {

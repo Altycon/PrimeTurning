@@ -6,6 +6,8 @@ function getControlData(){
     const hexCompositeColorAlpha = '4d';
     const hexPrimeColorAplpha = '80';
     return {
+        startX: +form.get('startX'),
+        startY: +form.get('startY'),
         resolution: +form.get('resolution'),
         size: +form.get('size'),
         maxNumber: +form.get('maxNumber'),
