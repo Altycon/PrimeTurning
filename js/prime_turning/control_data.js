@@ -16,7 +16,13 @@ function getControlData(){
     }
 };
 
+function setControlDataPropertyValue(property, value){
+    [...document.querySelector('.controls').elements]
+    .filter( element => element.name === property)[0].value = value;
+};
+
 export {
     setNumberCountDisplay,
-    getControlData
+    getControlData,
+    setControlDataPropertyValue
 }

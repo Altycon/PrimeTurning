@@ -1,8 +1,8 @@
 import { APP_STATE } from "../state.js";
 import { addProcessNotification } from "../notifications/process_notification.js";
 import { calculateNumberPositions } from "./calculate_positions.js";
-import { renderPixel, renderNumberPositions, renderPoint } from "./rendering.js";
-import { setNumberCountDisplay } from "./control_data.js";
+import { renderSquare, renderNumberPositions, renderPoint } from "./rendering.js";
+import { setNumberCountDisplay, setControlDataPropertyValue } from "./control_data.js";
 import { DPI } from "../utilities.js";
 
 const CONTROLS = {
@@ -13,16 +13,24 @@ const CONTROLS = {
     PAUSE_ANIMATION_BTN: document.querySelector('.js-pause-animate-btn')
 };
 
+// Pointer
+function setPointerPosition({ clientX, clientY }){
+    
+    APP_STATE.POINTER.x = clientX * DPI;
+    APP_STATE.POINTER.y = clientY * DPI;
+
+    setControlDataPropertyValue('startX', APP_STATE.POINTER.x);
+    setControlDataPropertyValue('startY', APP_STATE.POINTER.y);
+};
+
+
 // Calculate
 function calculatePositions(ev){
     ev.preventDefault();
 
     const startX = APP_STATE.CANVAS_WIDTH;
     const startY = APP_STATE.CANVAS_HEIGHT;
-    APP_STATE.NUMBER_POSITIONS = calculateNumberPositions(
-        startX, 
-        startY
-    );
+    APP_STATE.NUMBER_POSITIONS = calculateNumberPositions();
 
     addProcessNotification('Calculation finished.');
 };
@@ -33,20 +41,33 @@ function renderPositions(){
     renderNumberPositions(
         APP_STATE.CTX, 
         APP_STATE.NUMBER_POSITIONS, 
-        'pixel'
+        'square'
     );
 };
+
+
+// Animation functions
 function addAnimationButtonListeners(){
-    function stopAnimation(){
+
+    function stopAnimation({ currentTarget }){
+
         cancelAnimationFrame(APP_STATE.ANIMATION_INTERVAL);
         APP_STATE.ANIMATION_INTERVAL = null;
+
+        currentTarget.removeEventListener('click', stopAnimation);
+        CONTROLS.PAUSE_ANIMATION_BTN.removeEventListener('click', pauseAnimation);
     };
+
     function pauseAnimation(){
         cancelAnimationFrame(APP_STATE.ANIMATION_INTERVAL);
     };
+
     CONTROLS.STOP_ANIMATION_BTN.addEventListener('click', stopAnimation);
     CONTROLS.PAUSE_ANIMATION_BTN.addEventListener('click', pauseAnimation);
 };
+
+
+// Animate
 function animatePositions(){
     if(APP_STATE.NUMBER_POSITIONS.length === 0) return;
     addAnimationButtonListeners();
@@ -66,7 +87,7 @@ function animatePositions(){
             return;
         }
         const position = APP_STATE.NUMBER_POSITIONS[i];
-        renderPixel(APP_STATE.CTX, position);
+        renderSquare(APP_STATE.CTX, position);
         renderPoint(APP_STATE.CTX, center);
         setNumberCountDisplay(i);
         i++;
@@ -83,6 +104,7 @@ function addControlButtonListeners(){
     CONTROLS.CALCULATE_BTN.addEventListener('click', calculatePositions);
     CONTROLS.RENDER_BTN.addEventListener('click', renderPositions);
     CONTROLS.ANIMATE_BTN.addEventListener('click', animatePositions);
+    APP_STATE.CANVAS.addEventListener('pointerdown', setPointerPosition)
 };
 
 export {

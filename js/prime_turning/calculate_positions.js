@@ -15,8 +15,8 @@ function calculateNumberPositions(sx,sy){
             x = previousPosition.x;
             y = previousPosition.y;
         }else{
-            x = sx * controlData.startX;
-            y = sy * controlData.startY;
+            x = controlData.startX;
+            y = controlData.startY;
         }
         
         switch(direction % 4){

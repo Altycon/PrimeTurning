@@ -15,18 +15,18 @@ function renderPoint(ctx, point){
     ctx.arc(point.x, point.y, point.s, 0, TWO_PI);
     ctx.fill();
 };
-function renderPixel(ctx, point){
-    ctx.fillStyle = point.c;
-    ctx.fillRect(point.x, point.y, point.s, point.s);
+function renderSquare(ctx, square){
+    ctx.fillStyle = square.c;
+    ctx.fillRect(square.x, square.y, square.s, square.s);
 };
-function renderNumberPositions(ctx,positions,type = 'pixel'){
+function renderNumberPositions(ctx,positions,type = 'square'){
    
     ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
     const len = positions.length;
     switch(type){
-        case 'pixel':
+        case 'square':
             for(let i = 0; i < len; i++){
-                renderPixel(ctx, positions[i]);
+                renderSquare(ctx, positions[i]);
             }
         break;
         case 'point':
@@ -48,6 +48,6 @@ function renderNumberPositions(ctx,positions,type = 'pixel'){
 export {
     renderNumber,
     renderPoint,
-    renderPixel,
+    renderSquare,
     renderNumberPositions
 }
