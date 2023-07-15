@@ -27,6 +27,9 @@ function isPrime(value){
     }
     return true;
 };
+function degreesToRadians(degrees){
+    return degrees * Math.PI/180;
+}
 
 export {
     DPI,
@@ -35,5 +38,6 @@ export {
     random,
     scale,
     fixCanvas,
-    isPrime
+    isPrime,
+    degreesToRadians
 }

@@ -13,20 +13,32 @@
         <form class="controls" data-count="0">
             <div class="control-properties">
                 <div class="property-wrapper">
-                    <label for="StartXInput">X-axis:</label>
+                    <label for="StartXInput">Start X:</label>
                     <input type="number" name="startX" value="0.5" max="1" min="0" id="StartXInput" autocomplete="off">
                 </div>
                 <div class="property-wrapper">
-                    <label for="StartYInput">Y-axis:</label>
+                    <label for="StartYInput">Start Y:</label>
                     <input type="number" name="startY" value="0.5" max="1" min="0" id="StartYInput" autocomplete="off">
                 </div>
                 <div class="property-wrapper">
-                    <label for="ResolutionInput">Resolution:</label>
-                    <input type="number" name="resolution" value="1" id="ResolutionInput" autocomplete="off">
+                    <label for="SetSquareInput">Square
+                        <input type="radio" name="shape" value="square" id="SetSquareInput" autocomplete="off" checked>
+                    </label>
+                    <label for="SetSquareInput">Point
+                        <input type="radio" name="shape" value="point" id="SetPointInput" autocomplete="off">
+                    </label>
+                </div>
+                <div class="property-wrapper">
+                    <label for="DistanceInput">Distance:</label>
+                    <input type="number" name="distance" value="1" id="DistanceInput" autocomplete="off">
                 </div>
                 <div class="property-wrapper">
                     <label for="PointSizeInput">Size:</label>
                     <input type="number" name="size" value="1" id="PointSizeInput"  autocomplete="off">
+                </div>
+                <div class="property-wrapper">
+                    <label for="AngleInput">Angle:</label>
+                    <input type="number" name="angle" value="90" id="AngleInput"  autocomplete="off">
                 </div>
                 <div class="property-wrapper">
                     <label for="MaxNumberInput">Max #</label>

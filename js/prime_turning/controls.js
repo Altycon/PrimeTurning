@@ -1,6 +1,7 @@
 import { APP_STATE } from "../state.js";
+import { getControlData } from "./control_data.js";
 import { addProcessNotification } from "../notifications/process_notification.js";
-import { calculateNumberPositions } from "./calculate_positions.js";
+import { calculateDegreePositions, calculateNumberPositions } from "./calculate_positions.js";
 import { renderSquare, renderNumberPositions, renderPoint } from "./rendering.js";
 import { setNumberCountDisplay, setControlDataPropertyValue } from "./control_data.js";
 import { DPI } from "../utilities.js";
@@ -28,11 +29,14 @@ function setPointerPosition({ clientX, clientY }){
 function calculatePositions(ev){
     ev.preventDefault();
 
-    const startX = APP_STATE.CANVAS_WIDTH;
-    const startY = APP_STATE.CANVAS_HEIGHT;
-    APP_STATE.NUMBER_POSITIONS = calculateNumberPositions();
+    const controlData = getControlData();
+    APP_STATE.PRIME_TURNER_SHAPE = controlData.shape;
 
-    addProcessNotification('Calculation finished.');
+    if(controlData.angle === 90){
+        APP_STATE.NUMBER_POSITIONS = calculateNumberPositions(controlData);
+    }else{
+        APP_STATE.NUMBER_POSITIONS = calculateDegreePositions(controlData);
+    }
 };
 
 function renderPositions(){
@@ -41,7 +45,7 @@ function renderPositions(){
     renderNumberPositions(
         APP_STATE.CTX, 
         APP_STATE.NUMBER_POSITIONS, 
-        'square'
+        APP_STATE.PRIME_TURNER_SHAPE
     );
 };
 
@@ -56,6 +60,7 @@ function addAnimationButtonListeners(){
 
         currentTarget.removeEventListener('click', stopAnimation);
         CONTROLS.PAUSE_ANIMATION_BTN.removeEventListener('click', pauseAnimation);
+        addProcessNotification('Animation stopped')
     };
 
     function pauseAnimation(){
@@ -77,9 +82,12 @@ function animatePositions(){
         c: 'hsl(180 100% 50%)',
         s: 3 * (DPI > 1 ? DPI*0.5:DPI)
     };
+
     APP_STATE.CTX.clearRect(0,0,APP_STATE.CANVAS_WIDTH,APP_STATE.CANVAS_HEIGHT);
     let i = 0;
+
     function animate(){
+        
         if(i >= APP_STATE.NUMBER_POSITIONS.length){
             cancelAnimationFrame(APP_STATE.ANIMATION_INTERVAL);
             addProcessNotification('Animation Finished');
@@ -94,8 +102,6 @@ function animatePositions(){
         APP_STATE.ANIMATION_INTERVAL = requestAnimationFrame(animate);
     }
     animate();
-
-
 };
 
 

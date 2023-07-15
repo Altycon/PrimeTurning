@@ -1,51 +1,92 @@
+import { isPrime, degreesToRadians } from "../utilities.js";
+import { addProcessNotification } from "../notifications/process_notification.js";
 
-import { getControlData } from "./control_data.js";
-import { DPI,isPrime } from "../utilities.js";
+function calculateDegreePositions(controlData){
+    const numberPositions = [];
+    let previousPosition;
 
-function calculateNumberPositions(sx,sy){
-    const controlData = getControlData();
+    let x,y,c;
+    let theta = degreesToRadians(90);
 
+    for(let i = 0; i <= controlData.maxNumber; i++){
+        let p;
+        if(previousPosition){
+            x = previousPosition.x + controlData.distance * Math.sin(theta);
+            y = previousPosition.y + controlData.distance * Math.cos(theta);
+
+        }else{
+            x = controlData.startX;
+            y = controlData.startY;
+        }
+
+        if(isPrime(i)){
+            c = controlData.primeColor;
+            p = 1;
+
+            theta += degreesToRadians(-controlData.angle);
+        }else{
+            c = controlData.compositeColor;
+            p = 0;
+        }
+
+        numberPositions.push({ x: x, y: y, c: c, s: controlData.size, p: p });
+        
+        previousPosition = {x: x, y: y };
+    }
+    addProcessNotification('Calculation2 finished.');
+    return numberPositions;
+}
+
+function calculateNumberPositions(controlData){
     const numberPositions = [];
     let previousPosition;
 
     let direction = 0;
     let x,y,c;
     for(let i = 0; i <= controlData.maxNumber; i++){
+        let p;
         if(previousPosition){
             x = previousPosition.x;
             y = previousPosition.y;
+
+            switch(direction % 4){
+                case 0:
+                    x += controlData.distance;
+                    break;
+                case 1:
+                    y += controlData.distance;
+                    break;
+                case 2:
+                    x -= controlData.distance;
+                    break;
+                case 3:
+                    y -= controlData.distance;
+                    break;
+            }
+
         }else{
             x = controlData.startX;
             y = controlData.startY;
         }
         
-        switch(direction % 4){
-            case 0:
-                x += controlData.resolution * DPI;
-                break;
-            case 1:
-                y += controlData.resolution * DPI;
-                break;
-            case 2:
-                x -= controlData.resolution * DPI;
-                break;
-            case 3:
-                y -= controlData.resolution * DPI;
-                break;
-        }
-
         if(isPrime(i)){
             direction++;
             c = controlData.primeColor;
+            p = 1;
         }else{
             c = controlData.compositeColor;
+            p = 0;
         }
 
-        numberPositions.push({ x: x, y: y, c: c, s: controlData.size * DPI });
+        numberPositions.push({ x: x, y: y, c: c, s: controlData.size });
         
         previousPosition = {x: x, y: y };
     }
+    addProcessNotification('Calculation finished.');
     return numberPositions;
 };
 
-export { calculateNumberPositions };
+export { 
+    calculateDegreePositions,
+    calculateNumberPositions 
+};

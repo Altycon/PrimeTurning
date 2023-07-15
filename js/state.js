@@ -8,7 +8,8 @@ const APP_STATE = {
     POINTER: {
         x: null,
         y: null
-    }
+    },
+    PRIME_TURNER_SHAPE: null
 };
 
 export { APP_STATE };

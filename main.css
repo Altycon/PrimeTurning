@@ -141,8 +141,6 @@ body{
         max-width: max-content;
         height: 200px;
         overflow-y: scroll;
-        /* border-bottom-right-radius: 10px;
-        background-color: hsl(0 0% 50% / 0.1); */
     }
     .controls::after{
         content: attr(data-count);
