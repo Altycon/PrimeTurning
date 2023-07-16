@@ -15,10 +15,9 @@ const CONTROLS = {
 };
 
 // Pointer
-function setPointerPosition({ clientX, clientY }){
-    
-    APP_STATE.POINTER.x = clientX * DPI;
-    APP_STATE.POINTER.y = clientY * DPI;
+function setPointerPosition({ offsetX, offsetY }){
+    APP_STATE.POINTER.x = offsetX * DPI;
+    APP_STATE.POINTER.y = offsetY * DPI;
 
     setControlDataPropertyValue('startX', APP_STATE.POINTER.x);
     setControlDataPropertyValue('startY', APP_STATE.POINTER.y);
@@ -82,12 +81,18 @@ function animatePositions(){
         c: 'hsl(180 100% 50%)',
         s: 3 * (DPI > 1 ? DPI*0.5:DPI)
     };
+    const end = {
+        x: APP_STATE.NUMBER_POSITIONS[APP_STATE.NUMBER_POSITIONS.length-1].x,
+        y: APP_STATE.NUMBER_POSITIONS[APP_STATE.NUMBER_POSITIONS.length-1].y,
+        c: 'hsl(60 100% 50%)',
+        s: 3 * (DPI > 1 ? DPI*0.5:DPI)
+    };
 
     APP_STATE.CTX.clearRect(0,0,APP_STATE.CANVAS_WIDTH,APP_STATE.CANVAS_HEIGHT);
     let i = 0;
 
     function animate(){
-        
+
         if(i >= APP_STATE.NUMBER_POSITIONS.length){
             cancelAnimationFrame(APP_STATE.ANIMATION_INTERVAL);
             addProcessNotification('Animation Finished');
@@ -97,6 +102,7 @@ function animatePositions(){
         const position = APP_STATE.NUMBER_POSITIONS[i];
         renderSquare(APP_STATE.CTX, position);
         renderPoint(APP_STATE.CTX, center);
+        renderPoint(APP_STATE.CTX, end);
         setNumberCountDisplay(i);
         i++;
         APP_STATE.ANIMATION_INTERVAL = requestAnimationFrame(animate);

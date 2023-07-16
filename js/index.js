@@ -13,11 +13,20 @@ import { setControlDataPropertyValue } from "./prime_turning/control_data.js";
  *  - do the same for all general case shapes?
  */
 
+function setCanvasDisplay(){
+    const display = document.querySelector('.display');
+    const canvas = document.querySelector('.canvas');
+
+    APP_STATE.CANVAS = fixCanvas(canvas,DPI, display);
+};
+
+
+
 function initializeApp(){
     
     addProcessNotification('Application started.');
     
-    APP_STATE.CANVAS = fixCanvas(document.querySelector('.canvas'),DPI);
+    setCanvasDisplay();
     
     APP_STATE.CTX = APP_STATE.CANVAS.getContext('2d');
     APP_STATE.CANVAS_WIDTH = APP_STATE.CANVAS.width;

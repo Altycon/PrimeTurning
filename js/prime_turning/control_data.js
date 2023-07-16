@@ -1,7 +1,7 @@
 import { DPI } from "../utilities.js";
 
 function setNumberCountDisplay(n){
-    document.querySelector('.controls').dataset.count = `${n}`;
+    document.querySelector('.data-count').innerText = `${n}`;
 }
 function getControlData(){
     const form = new FormData(document.querySelector('.controls'));

@@ -42,6 +42,13 @@ function renderNumberPositions(ctx,positions,type = 'square'){
             c: 'hsl(180 100% 50%)',
             s: 2
         });
+    renderPoint(ctx, 
+        { 
+            x: positions[len - 1].x, 
+            y: positions[len - 1].y, 
+            c: 'hsl(60 100% 50%)',
+            s: 2
+        });
     addProcessNotification('Rendered.')
 };
 
