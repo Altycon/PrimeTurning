@@ -33,7 +33,7 @@ function calculateDegreePositions(controlData){
         
         previousPosition = {x: x, y: y };
     }
-    addProcessNotification('Calculation2 finished.');
+    addProcessNotification('Calculation finished.');
     return numberPositions;
 }
 

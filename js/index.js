@@ -3,6 +3,7 @@ import { DPI, fixCanvas, setUserDisplayViewPosition } from "./utilities.js";
 import { addProcessNotification } from "./notifications/process_notification.js";
 import { addControlButtonListeners } from "./prime_turning/controls.js";
 import { setControlDataPropertyValue } from "./prime_turning/control_data.js";
+import { renderText } from "./prime_turning/rendering.js";
 
 /**
  *      NOTES
@@ -19,6 +20,17 @@ function setCanvasDisplay(){
 
     APP_STATE.CANVAS = fixCanvas(canvas,DPI, display);
 
+    APP_STATE.CTX = APP_STATE.CANVAS.getContext('2d');
+    APP_STATE.CANVAS_WIDTH = APP_STATE.CANVAS.width;
+    APP_STATE.CANVAS_HEIGHT = APP_STATE.CANVAS.height;
+
+    renderText(
+        APP_STATE.CTX,
+        'PRIME TURNER',
+        APP_STATE.CANVAS_WIDTH*0.5,
+        APP_STATE.CANVAS_HEIGHT*0.5
+    )
+
     setUserDisplayViewPosition(display);
     
 };
@@ -31,9 +43,7 @@ function initializeApp(){
     
     setCanvasDisplay();
     
-    APP_STATE.CTX = APP_STATE.CANVAS.getContext('2d');
-    APP_STATE.CANVAS_WIDTH = APP_STATE.CANVAS.width;
-    APP_STATE.CANVAS_HEIGHT = APP_STATE.CANVAS.height;
+    
 
     setControlDataPropertyValue('startX', APP_STATE.CANVAS_WIDTH*0.5);
     setControlDataPropertyValue('startY', APP_STATE.CANVAS_HEIGHT*0.5);

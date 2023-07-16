@@ -52,9 +52,23 @@ function renderNumberPositions(ctx,positions,type = 'square'){
     addProcessNotification('Rendered.')
 };
 
+function renderText(ctx,text, x, y){
+    const fs = 50 * DPI;
+    const fs2 = 20 * DPI;
+    const split = text.split(' ');
+    ctx.font = `${fs}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'cornflowerblue';
+    ctx.fillText(split[0], x, y);
+    ctx.fillText(split[1], x, y + (fs*1.2));
+    ctx.font = `${fs2}px sans-serif`;
+    ctx.fillText('By Clayton McDaniel', x, y + (fs*1.2) + (fs*1.2))
+};
+
 export {
     renderNumber,
     renderPoint,
     renderSquare,
-    renderNumberPositions
+    renderNumberPositions,
+    renderText
 }
