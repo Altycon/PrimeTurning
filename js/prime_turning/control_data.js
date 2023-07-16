@@ -17,7 +17,8 @@ function getControlData(){
         angle: +form.get('angle'),
         maxNumber: +form.get('maxNumber'),
         compositeColor: form.get('compositeColor') + hexCompositeColorAlpha,
-        primeColor: form.get('primeColor') //+ hexPrimeColorAplpha
+        primeColor: form.get('primeColor'), //+ hexPrimeColorAplpha,
+        backgroundColor: form.get('backgroundColor')
     }
 };
 

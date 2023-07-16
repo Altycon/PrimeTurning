@@ -4,14 +4,20 @@ import { addProcessNotification } from "../notifications/process_notification.js
 import { calculateDegreePositions, calculateNumberPositions } from "./calculate_positions.js";
 import { renderSquare, renderNumberPositions, renderPoint } from "./rendering.js";
 import { setNumberCountDisplay, setControlDataPropertyValue } from "./control_data.js";
-import { DPI } from "../utilities.js";
+import { DPI, setUserDisplayViewPosition } from "../utilities.js";
 
 const CONTROLS = {
     CALCULATE_BTN: document.querySelector('.js-calculate-btn'),
     RENDER_BTN: document.querySelector('.js-render-btn'),
     STOP_ANIMATION_BTN: document.querySelector('.js-stop-animate-btn'),
     ANIMATE_BTN: document.querySelector('.js-animate-btn'),
-    PAUSE_ANIMATION_BTN: document.querySelector('.js-pause-animate-btn')
+    PAUSE_ANIMATION_BTN: document.querySelector('.js-pause-animate-btn'),
+    BACKGROUND_COLOR_INPUT: document.querySelector('#BackgroundColorInput')
+};
+
+function setCanvasBackgroundColor(ev){
+    console.log(ev.currentTarget.value);
+    APP_STATE.CANVAS.style.backgroundColor = ev.currentTarget.value;
 };
 
 // Pointer
@@ -46,6 +52,7 @@ function renderPositions(){
         APP_STATE.NUMBER_POSITIONS, 
         APP_STATE.PRIME_TURNER_SHAPE
     );
+
 };
 
 
@@ -116,6 +123,7 @@ function addControlButtonListeners(){
     CONTROLS.CALCULATE_BTN.addEventListener('click', calculatePositions);
     CONTROLS.RENDER_BTN.addEventListener('click', renderPositions);
     CONTROLS.ANIMATE_BTN.addEventListener('click', animatePositions);
+    CONTROLS.BACKGROUND_COLOR_INPUT.addEventListener('change', setCanvasBackgroundColor);
     APP_STATE.CANVAS.addEventListener('pointerdown', setPointerPosition)
 };
 

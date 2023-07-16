@@ -1,5 +1,5 @@
 import { addProcessNotification } from "../notifications/process_notification.js";
-import { TWO_PI } from "../utilities.js";
+import { DPI, TWO_PI } from "../utilities.js";
 
 function renderNumber(ctx,num,x,y){
     const fontSize = 10;
@@ -40,14 +40,14 @@ function renderNumberPositions(ctx,positions,type = 'square'){
             x: positions[0].x, 
             y: positions[0].y, 
             c: 'hsl(180 100% 50%)',
-            s: 2
+            s: 3 * (DPI > 1 ? DPI*0.5:DPI)
         });
     renderPoint(ctx, 
         { 
             x: positions[len - 1].x, 
             y: positions[len - 1].y, 
             c: 'hsl(60 100% 50%)',
-            s: 2
+            s: 3 * (DPI > 1 ? DPI*0.5:DPI)
         });
     addProcessNotification('Rendered.')
 };

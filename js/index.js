@@ -1,5 +1,5 @@
 import { APP_STATE } from "./state.js";
-import { DPI, fixCanvas } from "./utilities.js";
+import { DPI, fixCanvas, setUserDisplayViewPosition } from "./utilities.js";
 import { addProcessNotification } from "./notifications/process_notification.js";
 import { addControlButtonListeners } from "./prime_turning/controls.js";
 import { setControlDataPropertyValue } from "./prime_turning/control_data.js";
@@ -18,6 +18,9 @@ function setCanvasDisplay(){
     const canvas = document.querySelector('.canvas');
 
     APP_STATE.CANVAS = fixCanvas(canvas,DPI, display);
+
+    setUserDisplayViewPosition(display);
+    
 };
 
 
@@ -36,5 +39,6 @@ function initializeApp(){
     setControlDataPropertyValue('startY', APP_STATE.CANVAS_HEIGHT*0.5);
 
     addControlButtonListeners();
+
 };
 initializeApp();
