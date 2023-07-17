@@ -3,7 +3,7 @@ import { getControlData } from "./control_data.js";
 import { addProcessNotification } from "../notifications/process_notification.js";
 import { calculateDegreePositions, calculateNumberPositions } from "./calculate_positions.js";
 import { renderSquare, renderNumberPositions, renderPoint } from "./rendering.js";
-import { setNumberCountDisplay, setControlDataPropertyValue } from "./control_data.js";
+import { setNumberCountDisplay, setControlDataPropertyValue, presetControlData } from "./control_data.js";
 import { DPI } from "../utilities.js";
 
 const CONTROLS = {
@@ -12,13 +12,13 @@ const CONTROLS = {
     STOP_ANIMATION_BTN: document.querySelector('.js-stop-animate-btn'),
     ANIMATE_BTN: document.querySelector('.js-animate-btn'),
     PAUSE_ANIMATION_BTN: document.querySelector('.js-pause-animate-btn'),
-    BACKGROUND_COLOR_INPUT: document.querySelector('#BackgroundColorInput')
+    BACKGROUND_COLOR_INPUT: document.querySelector('#BackgroundColorInput'),
+    PRESET_BTNS: [...document.querySelectorAll('[data-preset]')]
 };
 
 
-function setCanvasBackgroundColor(ev){
-    console.log(ev.currentTarget.value);
-    APP_STATE.CANVAS.style.backgroundColor = ev.currentTarget.value;
+function setCanvasBackgroundColor({ currentTarget }){
+    APP_STATE.CANVAS.style.backgroundColor = currentTarget.value;
 };
 
 // Pointer
@@ -132,9 +132,14 @@ function animatePositions(){
     animate();
 };
 
-
+function handlePresetInput({ currentTarget }){
+    presetControlData(currentTarget.dataset.preset);
+};
 
 function addControlButtonListeners(){
+    CONTROLS.PRESET_BTNS.forEach( button => {
+        button.addEventListener('click', handlePresetInput);
+    })
     CONTROLS.CALCULATE_BTN.addEventListener('click', calculatePositions);
     CONTROLS.RENDER_BTN.addEventListener('click', renderPositions);
     CONTROLS.ANIMATE_BTN.addEventListener('click', animatePositions);

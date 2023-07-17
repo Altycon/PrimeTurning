@@ -34,25 +34,14 @@ function degreesToRadians(degrees){
     return degrees * Math.PI/180;
 };
 
-function setUserDisplayViewPosition(display, options){
+function setUserDisplayViewPosition(display){
     const style_width = +getComputedStyle(display).getPropertyValue('width').slice(0,-2);
     const style_height = +getComputedStyle(display).getPropertyValue('height').slice(0,-2);
-    const rect = display.getBoundingClientRect();
-    console.log(rect);
-    if(options){
-        display.scroll({
-            top: options.y,
-            left: options.x,
-            behavior: "smooth",
-        });
-    }else{
-        display.scroll({
-            top: style_height*1.5,
-            left: style_width*1.5,
-            behavior: "smooth",
-        });
-    }
-    
+    display.scroll({
+        top: style_height*1.5,
+        left: style_width*1.5,
+        behavior: "smooth",
+    });
 };
 
 export {

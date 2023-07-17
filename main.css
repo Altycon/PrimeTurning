@@ -57,9 +57,10 @@ main{
 .btn-active{
     box-shadow: var(--box-shadow-outward);
     color: var(--fs-primary);
-    transition: all 100ms ease;
+    transition: all 50ms ease;
 }
 .btn-active:active{
+    scale: .98;
     box-shadow: var(--box-shadow-inward);
 }
 .btn-inactive{
@@ -70,6 +71,53 @@ main{
 
 /*  === TOPOLOGY ===  */
 
+.presets{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+
+    padding: 5px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    border: 1px solid hsl(0 0% 50% / 0.5);
+}
+.presets > button{
+    border: none;
+    box-shadow: var(--box-shadow-outward);
+    font-weight: 700;
+    border-radius: 5px;
+    background-image: linear-gradient(90deg,hsl(230 100% 50%), hsl(0 0% 0% / 0.8));
+    color: var(--fc-primary);
+}
+.presets > button:active{
+    scale: .95;
+}
+.presets > :nth-child(1){
+    grid-column: 1/6;
+    grid-row: 1;
+    text-align: center;
+}
+.presets > :nth-child(2){
+    grid-column: 1;
+    grid-row: 2;
+}
+.presets > :nth-child(3){
+    grid-column: 2;
+    grid-row: 2;
+}
+.presets > :nth-child(4){
+    grid-column: 3;
+    grid-row: 2;
+}
+.presets > :nth-child(5){
+    grid-column: 4;
+    grid-row: 2;
+}
+.presets > :nth-child(6){
+    grid-column: 5;
+    grid-row: 2;
+}
 
 
 .controls{

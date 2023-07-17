@@ -12,7 +12,7 @@ function calculateDegreePositions(controlData){
     let x,y,c;
     let theta = degreesToRadians(90);
 
-    for(let i = 0; i <= controlData.maxNumber; i++){
+    for(let i = 1; i <= controlData.maxNumber; i++){
         let p;
         if(previousPosition){
             x = previousPosition.x + controlData.distance * Math.sin(theta);
@@ -47,7 +47,7 @@ function calculateNumberPositions(controlData){
 
     let direction = 0;
     let x,y,c;
-    for(let i = 0; i <= controlData.maxNumber; i++){
+    for(let i = 1; i <= controlData.maxNumber; i++){
         let p;
         if(previousPosition){
             x = previousPosition.x;
