@@ -1,6 +1,10 @@
 import { isPrime, degreesToRadians } from "../utilities.js";
 import { addProcessNotification } from "../notifications/process_notification.js";
 
+/**
+ *  x = x-axis position, y = y-axis position
+ *  c = color, s = size, p = primality
+ */
 function calculateDegreePositions(controlData){
     const numberPositions = [];
     let previousPosition;
@@ -33,7 +37,7 @@ function calculateDegreePositions(controlData){
         
         previousPosition = {x: x, y: y };
     }
-    addProcessNotification('Calculation finished.');
+    addProcessNotification('Calculation and more finished.');
     return numberPositions;
 }
 

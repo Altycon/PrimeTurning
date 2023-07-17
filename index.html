@@ -58,18 +58,18 @@
                 </div>
             </div>
             <div class="control-buttons">
-                <button type="button" class="calculate-btn js-calculate-btn">Calculate</button>
-                <button type="button" class="render-btn js-render-btn">Render</button>
+                <button type="button" class="calculate-btn js-calculate-btn btn-active" data-button="calculate">Calculate</button>
+                <button type="button" class="render-btn js-render-btn btn-inactive"  data-button="render">Render</button>
                 <div class="animation-control-buttons">
-                    <button type="button" class="stop-animate-btn js-stop-animate-btn">Stop</button>
-                    <button type="button" class="animate-btn js-animate-btn">Animate</button>
-                    <button type="button" class="pause-animate-btn js-pause-animate-btn">Pause</button>
+                    <button type="button" class="stop-animate-btn js-stop-animate-btn btn-inactive"  data-button="stopanimation">Stop</button>
+                    <button type="button" class="animate-btn js-animate-btn btn-inactive"  data-button="animate">Animate</button>
+                    <button type="button" class="pause-animate-btn js-pause-animate-btn btn-inactive"  data-button="pauseanimation">Pause</button>
                 </div>
             </div>
             <section class="process-notification-display js-process-notification-display">
         
             </section>
-            <p class="data-count-display">
+            <p class="data-count-display">#:&nbsp;
                 <span class="data-count">0</span>
             </p>
         </form>
