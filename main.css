@@ -249,13 +249,22 @@ main{
 /* === DISPLAY === */
 
 .display{
+    position: relative;
     grid-column: 2;
     grid-row: 1;
     border-radius: 10px;
     box-shadow: var(--box-shadow-inward);
     overflow: scroll;
 }
-
+.display::before{
+    content: "If any data values change, press 'Calculate' to change image.";
+    position: fixed;
+    top: 5%; left: 50%;
+    translate: 0% -50%;
+    font-size: .6rem;
+    color: white;
+    text-align: center;
+}
 .canvas{
     --size: 100;
     width: 400%;

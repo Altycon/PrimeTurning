@@ -2,38 +2,38 @@ import { DPI } from "../utilities.js";
 
 const PRESETS = {
     "1": {
-        shape: 'square',
-        distance: 20,
-        size: 5,
+        shape: 'point',
+        distance: 40,
+        size: 10,
         angle: 90,
         maxNumber: 100
     },
     "2": {
         shape: 'point',
-        distance: 10,
-        size: 3,
-        angle: 90,
+        distance: 20,
+        size: 5,
+        angle: 120,
         maxNumber: 500
     },
     "3": {
         shape: 'square',
         distance: 1,
-        size: 0.5,
-        angle: 1,
+        size: 1,
+        angle: 90,
         maxNumber: 10000
     },
     "4": {
-        shape: 'point',
+        shape: 'square',
         distance: 0.5,
         size: 1,
-        angle: 90,
+        angle: 45,
         maxNumber: 100000
     },
     "5": {
-        shape: 'point',
+        shape: 'square',
         distance: 0.1,
         size: 0.5,
-        angle: 90,
+        angle: 1,
         maxNumber: 1000000
     },
 }

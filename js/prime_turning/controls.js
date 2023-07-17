@@ -94,13 +94,13 @@ function animatePositions(){
         x: APP_STATE.NUMBER_POSITIONS[0].x,
         y: APP_STATE.NUMBER_POSITIONS[0].y,
         c: 'hsl(180 100% 50%)',
-        s: 1 * (DPI > 1 ? DPI*0.5:DPI)
+        s: APP_STATE.NUMBER_POSITIONS[0].s * (DPI > 1 ? DPI*0.5:DPI)
     };
     const end = {
         x: APP_STATE.NUMBER_POSITIONS[APP_STATE.NUMBER_POSITIONS.length-1].x,
         y: APP_STATE.NUMBER_POSITIONS[APP_STATE.NUMBER_POSITIONS.length-1].y,
         c: 'hsl(60 100% 50%)',
-        s: 1 * (DPI > 1 ? DPI*0.5:DPI)
+        s: APP_STATE.NUMBER_POSITIONS[0].s * (DPI > 1 ? DPI*0.5:DPI)
     };
 
     APP_STATE.CTX.clearRect(0,0,APP_STATE.CANVAS_WIDTH,APP_STATE.CANVAS_HEIGHT);
